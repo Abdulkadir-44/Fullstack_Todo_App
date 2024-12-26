@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.fc-toolbar-title {
+  @apply text-xl font-bold text-blue-600;
+}
+
+/* Aylar arası geçiş butonları */
+.fc-button-group .fc-button {
+  @apply bg-gray-300 text-gray-800 outline-none duration-150 mr-2 text-xs;
+}
+
+/* Gün hücrelerinin görünümü */
+.fc-col-header-cell {
+  @apply text-white font-medium text-sm;
+
+}
+
+.fc-theme-standard td {
+  @apply border-none
+}
+
+.dashboard-calendar .fc .fc-daygrid-day-frame {
+  @apply bg-[#2B2B35] rounded-[10px] m-[10px] lg:h-[100px] h-[90px] md:w-[80%] lg:w-[85%] w-[45px] xl:w-[90%]
+}
+
+.fc .fc-daygrid-day-frame {
+  @apply bg-[#2B2B35] rounded-[10px] m-[10px] lg:h-[100px] h-[60px] md:w-[80%] lg:w-[85%] w-[45px] xl:w-[90%]
+}
+
+.fc-scrollgrid-section {
+  @apply border-none
+}
+
+.fc-toolbar-chunk{
+  @apply flex justify-between items-center
+}
+
+/*Hücre içindeki yazıların rengi*/
+.fc-day {
+  @apply text-white text-sm 
+}
+
+.fc-button.fc-today-button {
+  @apply bg-blue-500 text-white duration-200 text-xs;
+}
+
+/* Today butonunun disabled hali */
+.fc-button.fc-today-button.fc-button-disabled {
+  @apply bg-gray-400 text-gray-700 cursor-not-allowed;
+}
+
+.fc-day.fc-day-today {
+  @apply bg-transparent !important;
+  /* veya istediğin başka bir renk */
+}
+
+.fc-daygrid-event:hover {
+  background-color: transparent !important;
+  /* Varsayılan arka plan rengini iptal et */
+  /* Eğer istersen border, color vs. özelliklerini de ayarlayabilirsin */
+}
+
+/* .fc-daygrid-event{
+  display: flex;
+  justify-content: center;
+} */
+
+.fc .fc-scroller::-webkit-scrollbar {
+  width: 1px;
+  scroll-behavior: smooth;
+}
+
+.fc .fc-scroller::-webkit-scrollbar-track {
+  @apply bg-[#1D1D26];
+}
+
+.fc .fc-scroller::-webkit-scrollbar-thumb {
+  @apply bg-blue-500;
+}
+
+.fc .fc-scroller::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-700;
+}
