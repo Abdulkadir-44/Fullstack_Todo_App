@@ -12,6 +12,7 @@ import Dashboard from "../pages/Panel/Dashboard"
 import Calendar from "../pages/Panel/Calendar"
 import StarTodos from "../pages/Panel/StarTodos"
 import Profile from "../pages/Panel/Profile"
+import ResetPassword from "../pages/authentication/ResetPassword"
 
 const AppRouter = () => {
 
@@ -68,6 +69,7 @@ const AppRouter = () => {
                     : (
                         <>
                             <Route path="/auth/login" element={<Login />} />
+                            <Route path="/auth/reset-password/:token" element={<ResetPassword />} />
                             <Route path="/auth/sign-up" element={<Register />} />
                             <Route path="*" element={<Navigate to="/auth/login" />} />
                         </>

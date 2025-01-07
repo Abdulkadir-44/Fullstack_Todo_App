@@ -13,8 +13,8 @@ const ModalOfDeleteNote = ({ task }) => {
         try {
             if (response) {
                 deleteOneNote(task?._id)
-                    .then(() => toast.success("Todo deleted !"))
-                    .catch(() => toast.error("Something gone wrong !!!"));
+                    .then((res) => toast.success(res.message))
+                    .catch((err) => toast.error(err.message));
                 setIsOpen(false)
                 setTimeout(() => {
                     window.location.reload();
@@ -69,7 +69,7 @@ const ModalOfDeleteNote = ({ task }) => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md bg-white rounded shadow-lg p-6 transform transition-all">
+                            <Dialog.Panel className="w-full max-w-md bg-white rounded shadow-lg p-3 transform transition-all">
 
                                 <Dialog.Description className="mt-2  ">
                                     Are you sure you want to delete the relevant todo?

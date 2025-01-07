@@ -115,3 +115,14 @@ export function getCalendarStatistics(tasks) {
 
   return events
 }
+
+export const getChangedFields = (data, originalData) => {
+  // Değişen özellikleri tespit et
+  const changedFields = {};
+  for (const key in data) {
+    if (data[key] !== originalData[key]) {
+      changedFields[key] = data[key];
+    }
+  }
+  return changedFields;
+};

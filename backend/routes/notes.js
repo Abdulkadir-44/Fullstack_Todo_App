@@ -104,6 +104,7 @@ router.patch("/update-importance/:id", tokenVerification, async (req, res) => {
 
 })
 
+//UPDATE NOTES
 router.patch("/update-notes/:id", tokenVerification, async (req, res) => {
     try {
         const { id } = req.params;

@@ -30,8 +30,8 @@ const TodosCard = ({ task, mobileTooltip = null }) => {
                 important: !task?.important
             }
             updateImportanceOfNote(task?._id, data)
-                .then(() => toast.success("Todo's star value has changed !"))
-                .catch(() => toast.error("Something gone wrong !!!"));
+                .then((res) => toast.success(res.message))
+                .catch((err) => toast.error(err.message));
             setTimeout(() => {
                 window.location.reload();
             }, 1200);

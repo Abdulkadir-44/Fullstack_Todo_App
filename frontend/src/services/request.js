@@ -12,7 +12,7 @@ function request(url, data = false, method = 'GET') {
             const token = parsedUser.accesToken
             options.headers.authorization = `Bearer ${token}`
         }
-        
+
         if (data != null && (method == 'POST' || method == 'PUT' || method == 'PATCH')) {
             options.body = JSON.stringify(data)
             /*

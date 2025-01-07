@@ -6,17 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { updateNote } from "../../services"
 import { toast } from "sonner";
 import { formatMongoDateForInput } from "../../utils/helper"
+import { getChangedFields } from "../../utils/helper"
 
-const getChangedFields = (data, originalData) => {
-    // Değişen özellikleri tespit et
-    const changedFields = {};
-    for (const key in data) {
-        if (data[key] !== originalData[key]) {
-            changedFields[key] = data[key];
-        }
-    }
-    return changedFields;
-};
 
 const ModalOfAddNote = ({ task }) => {
     const initialData = {
@@ -39,7 +30,7 @@ const ModalOfAddNote = ({ task }) => {
             await updateNote(task?._id, changes).then((result) => {
                 toast.success(result.message)
             }).catch((err) => {
-                toast.error(err)
+                toast.error(err.message)
             });
             setIsOpen(false)
             setTimeout(() => {
@@ -101,32 +92,38 @@ const ModalOfAddNote = ({ task }) => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md bg-gray-200 rounded shadow-lg p-6 transform transition-all">
+                            <Dialog.Panel className="w-full max-w-md bg-gray-200 rounded shadow-lg p-3 transform transition-all">
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="float-end cursor-pointer bg-red-600 px-3 py-1 mb-3 text-white rounded-sm">
+                                    className="float-end cursor-pointer bg-red-600 px-3 py-1 text-white rounded-sm">
                                     <FontAwesomeIcon icon={faTimes} />
                                 </button>
                                 <Dialog.Title className="md:text-lg w-full">
-                                    <input
-                                        name="title"
-                                        value={data.title}
-                                        onChange={handleChange}
-                                        placeholder="Title"
-                                        className="px-2 py-2 border placeholder:text-gray-700 w-full text-black border-gray-400 rounded-lg shadow-sm placeholder:font-bold font-semibold focus:outline-none focus:ring-1  placeholder-gray-400 text-sm" type="text"
-                                    />
+                                    <div className="flex flex-col w-full">
+                                        <p className="pl-1 text-sm font-medium italic text-gray-600">Title</p>
+                                        <input
+                                            name="title"
+                                            value={data.title}
+                                            onChange={handleChange}
+                                            placeholder="Title"
+                                            className="px-2 py-2 border placeholder:text-gray-700 w-full text-black border-gray-400 rounded-lg shadow-sm placeholder:font-bold font-semibold focus:outline-none focus:ring-1  placeholder-gray-400 text-sm" type="text"
+                                        />
+                                    </div>
                                 </Dialog.Title>
 
                                 <Dialog.Description className="mt-2">
-                                    <textarea
-                                        placeholder="Description"
-                                        name="description"
-                                        id="description"
-                                        value={data.description}
-                                        onChange={handleChange}
-                                        rows={5}
-                                        className="px-2 placeholder:text-gray-700 w-full py-1 resize-none outline-none text-black border-gray-400 rounded-lg shadow-sm placeholder:font-bold  focus:outline-none focus:ring-1  placeholder-gray-400 text-sm">
-                                    </textarea>
+                                    <div>
+                                        <p className="pl-1 text-sm font-medium italic text-gray-600 ">Description</p>
+                                        <textarea
+                                            placeholder="Description"
+                                            name="description"
+                                            id="description"
+                                            value={data.description}
+                                            onChange={handleChange}
+                                            rows={5}
+                                            className="px-2 border placeholder:text-gray-700 w-full py-1 resize-none outline-none text-black border-gray-400 rounded-lg shadow-sm placeholder:font-bold  focus:outline-none focus:ring-1  placeholder-gray-400 text-sm">
+                                        </textarea>
+                                    </div>
                                 </Dialog.Description>
 
                                 <div className="mt-2 flex justify-between items-center gap-4">

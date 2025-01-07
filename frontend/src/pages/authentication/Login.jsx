@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faGithub } from "@fortawesome/free-brands-svg-icons"
 import { motion } from "framer-motion"
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -9,6 +9,7 @@ import { validateEmail } from "../../utils/helper"
 import { toast } from 'sonner'
 import { login } from "../../services"
 import AuthComponent from "./AuthComponent"
+import ModalOfForgotPassword from '../../components/modal/ModalOfForgotPassword'
 
 const outDivVariants = {
   hidden: {
@@ -61,6 +62,8 @@ const Login = () => {
     email: "",
     password: ""
   })
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -82,6 +85,7 @@ const Login = () => {
         return;
       }
 
+      
       login(userInfo).then(data => {
         dispatch(userLogin(data))
         navigate("/panel", { replace: true })
@@ -95,8 +99,10 @@ const Login = () => {
     }
   }
 
-
-
+  const handleForgotPassword = (e) => {
+    e.preventDefault()
+    setIsModalOpen(true)
+  }
 
   return (
     <div className='min-h-screen bg-custom-image bg-cover bg-top flex justify-center items-center py-10 2xl:py-0 '>
@@ -146,6 +152,12 @@ const Login = () => {
             id="password"
             className=' mt-2 bg-[#596170] mb-4 w-full px-2 py-3  rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400 transition duration-200 ease-in-out' />
 
+          <button 
+            onClick={handleForgotPassword}
+            className='text-white text-xs float-end mb-4 underline underline-offset-4'
+          >
+            Şifremi unuttum ?
+          </button>
           <button
             type='submit'
             className='px-6 py-3 w-full bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700  transition duration-200 ease-in-out'
@@ -165,7 +177,7 @@ const Login = () => {
               <FontAwesomeIcon icon={faGoogle} />
               Sign in with Google
             </button> */}
-            <AuthComponent/>
+            <AuthComponent />
             <button
               className='mt-3 flex justify-center items-center gap-4 px-6 py-2 w-full bg-blue-900 text-gray-200 rounded-lg shadow-lg hover:bg-gray-200 hover:text-blue-700 transition duration-200 ease-in-out'
             >
@@ -186,6 +198,10 @@ const Login = () => {
           </div>
         </form>
       </motion.div>
+      <ModalOfForgotPassword 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   )
 }

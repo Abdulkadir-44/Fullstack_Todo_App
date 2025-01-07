@@ -23,8 +23,8 @@ const ModalOfAddNote = () => {
         // Todo has been added to to-do list , Something's gone wrong
         try {
             addNote(data)
-                .then(() => toast.success("Todo has been added to to-do list !"))
-                .catch(() => toast.error("Something's gone wrong !!!"));
+                .then((res) => toast.success(res.message))
+                .catch((err) => toast.error(err.message));
 
             setIsOpen(false);
 
@@ -98,7 +98,7 @@ const ModalOfAddNote = () => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md bg-gray-200 rounded shadow-lg p-6 transform transition-all">
+                            <Dialog.Panel className="w-full max-w-md bg-gray-200 rounded shadow-lg p-3 transform transition-all">
                                 <button
                                     onClick={handleExitClick}
                                     className="float-end cursor-pointer bg-red-600 px-3 py-1 mb-3 text-white rounded-sm">
@@ -122,7 +122,7 @@ const ModalOfAddNote = () => {
                                         value={data.description}
                                         onChange={handleChange}
                                         rows={5}
-                                        className="px-2 placeholder:text-gray-700 w-full py-1 resize-none outline-none text-black border-gray-400 rounded-lg shadow-sm placeholder:font-bold  focus:outline-none focus:ring-1  placeholder-gray-400 text-sm">
+                                        className="px-2 border placeholder:text-gray-700 w-full py-1 resize-none outline-none text-black border-gray-400 rounded-lg shadow-sm placeholder:font-bold  focus:outline-none focus:ring-1  placeholder-gray-400 text-sm">
                                     </textarea>
                                 </Dialog.Description>
 
