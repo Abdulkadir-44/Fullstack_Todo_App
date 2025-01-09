@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faGithub } from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faGithub , faGoogle } from "@fortawesome/free-brands-svg-icons"
 import { motion } from "framer-motion"
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { userLogin } from "../../redux/userSlice"
 import { validateEmail } from "../../utils/helper"
 import { toast } from 'sonner'
 import { login } from "../../services"
-import AuthComponent from "./AuthComponent"
+// import AuthComponent from "./AuthComponent"
 import ModalOfForgotPassword from '../../components/modal/ModalOfForgotPassword'
 
 const outDivVariants = {
@@ -171,26 +171,25 @@ const Login = () => {
             <div className="flex-1 border-t border-gray-300"></div>
           </div>
           <div className='text-sm'>
-            {/* <button
+            <button
+           
               className='flex justify-center items-center gap-4 px-6 py-2 w-full bg-red-700 text-white rounded-lg shadow-lg hover:bg-gray-300 hover:text-red-700 transition duration-200 ease-in-out'
             >
               <FontAwesomeIcon icon={faGoogle} />
-              Sign in with Google
-            </button> */}
-            <AuthComponent />
+              Sign In with Google
+            </button>
             <button
               className='mt-3 flex justify-center items-center gap-4 px-6 py-2 w-full bg-blue-900 text-gray-200 rounded-lg shadow-lg hover:bg-gray-200 hover:text-blue-700 transition duration-200 ease-in-out'
             >
               <FontAwesomeIcon icon={faFacebook} />
-              Sign in with Facebook
+              Sign In with Facebook
             </button>
             <button
               className='mt-3 flex justify-center items-center gap-4 px-6 py-2 w-full bg-green-800 text-white rounded-lg shadow-lg hover:bg-gray-300 hover:text-green-800 transition duration-200 ease-in-out'
             >
               <FontAwesomeIcon icon={faGithub} />
-              Sign in with Github
+              Sign In with Google
             </button>
-            {/* <AuthComponent /> */}
           </div>
           <div className='flex items-center justify-center gap-4 mt-4 '>
             Already have not an account ?

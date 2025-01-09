@@ -43,6 +43,7 @@ const StarTodos = () => {
         <div className='flex  items-center gap-2'>
           <div className='py-1 px-2 flex items-center gap-2 w-[218px] h-[36px] rounded-md bg-gray-300 placeholder:text-sm text-[15px]'>
             <input
+              disabled={!starTasks.length}
               className='outline-none bg-transparent'
               placeholder='Todo search...'
               type="text"
@@ -60,9 +61,9 @@ const StarTodos = () => {
             }
           </div>
 
-          <button tabIndex={0} className='bg-blue-800 text-white  h-[36px] hover:bg-gray-200 hover:text-blue-600 text-[15px] duration-150 px-3 py-1 rounded-md'>
+          {/* <button tabIndex={0} className='bg-blue-800 text-white  h-[36px] hover:bg-gray-200 hover:text-blue-600 text-[15px] duration-150 px-3 py-1 rounded-md'>
             <FontAwesomeIcon icon={faSearch} />
-          </button>
+          </button> */}
         </div>
       </motion.div>
 

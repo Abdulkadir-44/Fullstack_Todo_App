@@ -107,17 +107,12 @@ router.post("/login", async (req, res) => {
         const passwordMatch = await bcrypt.compare(password, userInfo.password)
 
         if (userInfo.email === email && passwordMatch) {
+            console.log("deneme2", userInfo)
             const accesToken = jwt.sign({ userId: userInfo._id, email: userInfo.email }, process.env.JWT_SECRET, { expiresIn: "4h" })
             return res.status(201).json({
                 error: false,
                 message: "Login success !",
-                userInfo: {
-                    fullName: userInfo.fullName,
-                    email: userInfo.email,
-                    createdAt: userInfo.createdAt,
-                    _id: userInfo._id,
-                    avatar: userInfo.avatar
-                },
+                userInfo,
                 accesToken
             })
         }
@@ -251,7 +246,7 @@ router.post("/forgot-password", async (req, res) => {
             resetPasswordToken: resetToken,
             resetPasswordExpires: Date.now() + 3600000 // 1 saat
         });
-        
+
         const resetUrl = `${process.env.FRONTEND_URL}/auth/reset-password/${resetToken}`;
         // Email içeriği
         const message = `
@@ -316,7 +311,7 @@ router.post("/forgot-password", async (req, res) => {
 
 //ŞİFRE SIFIRLAMA İŞLEMİ
 router.post("/reset-password/:token", async (req, res) => {
-   
+
     try {
         const { token } = req.params;
         const { newPassword } = req.body;
@@ -356,6 +351,8 @@ router.post("/reset-password/:token", async (req, res) => {
         return res.status(500).json({ message: "Sunucu hatası oluştu!", error: true });
     }
 });
+
+
 
 module.exports = router
 

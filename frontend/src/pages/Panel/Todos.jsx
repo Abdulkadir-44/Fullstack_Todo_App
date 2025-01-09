@@ -47,6 +47,7 @@ export const Todos = () => {
         <div className='flex  items-center gap-2'>
           <div className='py-1 px-2 flex items-center gap-2 w-[218px] md:h-[36px] h-[33px] rounded-md bg-gray-300 placeholder:text-sm text-[15px]'>
             <input
+              disabled={!tasks.length}
               className='outline-none bg-transparent'
               placeholder='Todo search...'
               type="text"

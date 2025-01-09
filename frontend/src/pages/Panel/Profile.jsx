@@ -9,7 +9,6 @@ import ModalOfChangeAvatar from "../../components/Modal/ModalOfChangeAvatar"
 const Profile = () => {
 
   const { user } = useSelector(store => store.user)
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
