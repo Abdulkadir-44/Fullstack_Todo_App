@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import { validateEmail } from "../../utils/helper"
 import { toast } from 'sonner'
 import { SignUp } from "../../services"
-import AuthComponent from "./AuthComponent"
+import GoogleWithLogin from "../../components/GoogleWithLogin"
 
 const outDivVariants = {
   hidden: {
@@ -167,7 +167,7 @@ const Register = () => {
 
           <button
             type='submit'
-            className='px-6 py-3 w-full bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700  transition duration-200 ease-in-out'
+            className='px-6 py-3 w-full bg-gray-300 font-medium text-blue-700 rounded-lg shadow-lg  transition duration-200 ease-in-out'
           >
             Sign Up
           </button>
@@ -185,8 +185,8 @@ const Register = () => {
               <FontAwesomeIcon icon={faGoogle} />
               Sign in with Google
             </button> */}
-            <AuthComponent/>
-            <button
+            <GoogleWithLogin/>
+            {/* <button
               className='mt-3 flex justify-center items-center gap-4 px-6 py-2 w-full bg-blue-900 text-gray-200 rounded-lg shadow-lg hover:bg-gray-200 hover:text-blue-700 transition duration-200 ease-in-out'
             >
               <FontAwesomeIcon icon={faFacebook} />
@@ -197,7 +197,7 @@ const Register = () => {
             >
               <FontAwesomeIcon icon={faGithub} />
               Sign in with Github
-            </button>
+            </button> */}
           </div>
 
           <div className='flex items-center justify-center gap-4 mt-4 '>

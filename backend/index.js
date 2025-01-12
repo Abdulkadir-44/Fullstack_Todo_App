@@ -22,12 +22,13 @@ mongoose.connect(process.env.MONGODB_URI)
 
 //cors hatası ve gelen istekleri json formatında okuma işlemi sağlandı
 app.use(express.json());
-app.use(
-    cors({
-        origin: "*",
-        methods: "GET,POST,PATCH,DELETE,PUT"
-    })
-);
+
+app.use(cors({
+    origin: "*", // Gerekirse spesifik originler ekleyin
+    methods: "GET,POST,PATCH,DELETE,PUT,OPTIONS",
+    allowedHeaders: "Content-Type, Authorization", // Gerekli başlıkları ekleyin
+    credentials: true // Gerektiğinde izin verin (örneğin, cookies kullanıyorsanız)
+}));
 
 app.use("/api/auth", authRouter)
 app.use("/api/notes", notesRouter)

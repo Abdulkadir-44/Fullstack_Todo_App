@@ -21,7 +21,7 @@ function request(url, data = false, method = 'GET') {
             JSON.stringify, JavaScript nesnelerini string haline getirir ve bu da HTTP protokolünün kabul ettiği bir format haline gelir.
             */
         }
-
+       
         try {
             fetch(url, options)
                 .then(async res => {

@@ -6,8 +6,8 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const { tokenVerification } = require("../utils/tokenVerification")
 const { sendEmail } = require("../utils/emailService")
+const { OAuth2Client } = require("google-auth-library")
 const mongoose = require('mongoose');
-
 
 router.get("/getall-userInfo", tokenVerification, async (req, res) => {
     try {
@@ -273,9 +273,6 @@ router.post("/forgot-password", async (req, res) => {
         </div>
         
         <p style="color: #374151; margin-bottom: 15px;">
-          ${resetUrl}
-        </p>
-        <p style="color: #374151; margin-bottom: 15px;">
           Bu link 1 saat boyunca geçerli olacaktır.
         </p>
 
@@ -352,6 +349,49 @@ router.post("/reset-password/:token", async (req, res) => {
     }
 });
 
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+
+router.post("/google", async (req, res) => {
+    const { token } = req.body; // Frontend'den gelen Google JWT token
+    
+    try {
+        // Google token doğrulama
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+
+        const payload = ticket.getPayload(); // Doğrulanan kullanıcı bilgileri
+        const { email, name, picture } = payload;
+
+        // Veritabanında kullanıcıyı ara
+        let userInfo = await User.findOne({ email });
+
+        if (!userInfo) {
+            // Kullanıcı yoksa yeni bir kullanıcı oluştur
+            userInfo = new User({
+                fullName: name,
+                email: email,
+                password: "GoogleUser", // Google kullanıcıları için varsayılan bir değer
+                avatar: picture, // Google'dan alınan profil resmi
+            });
+
+            await userInfo.save();
+        }
+
+        // JWT Token oluşturma
+        const accesToken = jwt.sign({ userId: userInfo._id, email: userInfo.email }, process.env.JWT_SECRET, { expiresIn: "4h" })
+        return res.status(201).json({
+            error: false,
+            message: "Login success !",
+            userInfo,
+            accesToken
+        })
+    } catch (error) {
+        console.error("Google Auth Error:", error);
+        res.status(400).json({ message: "Invalid Google token" });
+    }
+});
 
 
 module.exports = router

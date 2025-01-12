@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCamera, faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons"
+import {  faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons"
 import { useSelector } from "react-redux"
 import ModalOfChangePassword from '../../components/Modal/ModalOfChangePassword'
 import { motion } from "framer-motion"

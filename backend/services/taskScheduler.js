@@ -7,7 +7,7 @@ const startTaskScheduler = () => {
     console.log('Scheduler kurulumu yapılıyor...');
     console.log('Bir sonraki çalışma zamanı: 14:58');
     
-    cron.schedule('00 21 * * *', async () => {
+    cron.schedule('03 21 * * *', async () => {
         console.log('Cron görevi başladı - ' + new Date().toLocaleString());
         try {
             const users = await User.find();

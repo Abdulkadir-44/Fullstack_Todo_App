@@ -3,7 +3,7 @@ import TodosCard from '../../components/Todos/TodosCard'
 import { useSelector } from "react-redux"
 import { motion } from "framer-motion"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
+import {  faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const StarTodos = () => {
 

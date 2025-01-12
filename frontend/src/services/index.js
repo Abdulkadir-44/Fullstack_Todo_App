@@ -5,6 +5,7 @@ import { changePassword, changeFullname, changeAvatar } from "./changeOfUserInfo
 import { getUserInfo } from "./getUserInfo"
 import { forgotPassword } from "./forgotPassword"
 import { resetPassword } from "./resetPassword"
+import {googleLogin} from "./googleAuth"
 export {
     login,
     SignUp,
@@ -18,5 +19,6 @@ export {
     changeAvatar,
     getUserInfo,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    googleLogin
 }
